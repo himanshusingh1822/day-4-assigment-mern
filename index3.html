@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            background-color: rgb(192, 107, 22);
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .navbar {
+            height: 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+        }
+
+        .logo {
+            width: 20%;
+        }
+
+        nav {
+            width: 70%;
+        }
+
+        nav ul {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        nav li {
+            list-style: none;
+        }
+
+        nav li a {
+            text-decoration: none;
+        }
+
+        .container {
+            height: 90%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .small {
+            height: 70%;
+            width: 70%;
+
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .first {
+            height: 100%;
+            width: 45%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        select{
+            padding: 20px;
+            font-size: 20px;
+            border: 1px solid #fff;
+            border-radius: 10px;
+        }
+        label{
+            font-size: 20px;
+            font-weight: 500;
+            margin-right: 10px;
+        }
+        #second{
+            font-size: 20px;
+            border: 1px solid #fff;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">Spring Flowers School</div>
+
+        <nav>
+            <ul>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./index2.html">Student Profile</a></li>
+                <li><a href="./index3.html">Monthly Chart</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="small">
+            <div class="first">
+                <label for="subject">SUBJECT</label>
+                <select name="sub" id="subject">
+                    <option value="" disabled selected>Select Subject</option>
+                    <option value="HTML">HTML</option>
+                    <option value="CSS">CSS</option>
+                    <option value="JAVASCRIPT">JAVASCRIPT</option>
+                </select>
+            </div>
+            <div class="first" id="second">
+                activity displayed here
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    console.log("hey");
+
+    const monthlyActivities = [
+        { id: 1, activity: "TABLE AND FORMS", subject: "HTML" },
+        { id: 2, activity: "FLEX BOX", subject: "CSS" },
+        { id: 3, activity: "DOM", subject: "JAVASCRIPT" },
+
+    ];
+
+
+    function displayMonthlyActivities(givensubject) {
+        const activitiesContainer = document.getElementById("second");
+        activitiesContainer.innerHTML = "";
+
+
+        const filteredActivities = monthlyActivities.filter((item) => {
+            console.log(item.subject);
+            return item.subject === givensubject;
+        }
+        );
+        filteredActivities.forEach(activity => {
+            activitiesHTML = `<p>${activity.activity}</p>`;
+        });
+        activitiesContainer.innerHTML = activitiesHTML;
+
+
+    };
+
+
+    document.getElementById("subject").addEventListener("change", function () {
+        const selectedSubject = this.value;
+        console.log(selectedSubject);
+        if (selectedSubject) {
+            displayMonthlyActivities(selectedSubject);
+        }
+    });
+</script>
+
+
+</html>
